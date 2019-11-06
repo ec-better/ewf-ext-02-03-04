@@ -1,0 +1,21 @@
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="application">
+  <jobTemplates>
+    <jobTemplate id="notebook">
+      <streamingExecutable>/application/notebook/run</streamingExecutable>
+      <defaultParameters><parameter id="regionOfInterest" title="WKT Polygon for the Region of Interest" abstract="Set the value of WKT Polygon" maxOccurs="1" scope="runtime" type="LiteralData">POLYGON ((-8.864205 38.88616500000001, -8.864205 38.986165, -8.964205000000002 38.986165, -8.964205000000002 38.88616500000001, -8.864205 38.88616500000001))</parameter><parameter id="nameOfRegion" title="Name of Region" abstract="Name of the region of interest" minOccurs="1" maxOccurs="1" scope="runtime" type="LiteralData">P001</parameter><parameter id="indexAndApiKeys" title="index,apikey pairs" abstract="index,apikey pairs" minOccurs="1" maxOccurs="1" scope="runtime" type="LiteralData">better-ext-02-03-02,AKCp5dKscBjS2xuYhwSmqgvk2GGQ1rpxgLH2NqT9sD915j16AXj8Vy1S8Jwr5cFPX3EvHQxAT,better-ext-02-03-03,AKCp5dKscBjSA8RxPy1DtPAoJUonXuq13NBYGueKExDcnkkfJZPyZ2mbs5YgJKeo7fx7mj8Ci</parameter></defaultParameters>
+     <defaultJobconf>
+        <property id="mapred.task.timeout">9900000000000</property>
+        <property id="ciop.job.max.tasks">1</property> 
+     </defaultJobconf>
+    </jobTemplate>
+  </jobTemplates>
+  <workflow id="ewf-ext-02-03-04" title="NDVI anomalies of growing season time series per pixel" abstract="NDVI anomalies of growing season time series per pixel">
+    <workflowVersion>1.0</workflowVersion>
+    <node id="notebook">
+      <job id="notebook"/>
+      <sources>
+        <source id="source" title="Input references" abstract="Input references" refid="string:list" scope="runtime">https://catalog.terradue.com/better-wfp-02-01-02/search?format=atom&amp;uid=B02BEB4BAA63351C44F3DF2C9A6D8D116D089325,https://catalog.terradue.com/better-wfp-02-01-03/search?format=atom&amp;uid=442355F3238A8B5B9A016D3929ED42FCCF13C236</source>
+      </sources>
+    </node>
+  </workflow>
+</application>
